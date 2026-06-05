@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChromeTabManager</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="title">ChromeTabManager</h1>
+      <div class="stats">
+        <div class="stat-item">
+          <span class="stat-value" id="totalTabs">0</span>
+          <span class="stat-label">标签</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value" id="totalGroups">0</span>
+          <span class="stat-label">组</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value" id="staleCount">0</span>
+          <span class="stat-label">陈旧</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value" id="duplicateCount">0</span>
+          <span class="stat-label">重复</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="controls">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="搜索标题、域名或 URL...">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+      </div>
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">全部</button>
+        <button class="filter-btn" data-filter="stale">仅陈旧</button>
+        <button class="filter-btn" data-filter="duplicate">仅重复</button>
+      </div>
+    </div>
+
+    <div class="view-toggle">
+      <button class="view-btn active" data-view="domain">按域名</button>
+      <button class="view-btn" data-view="category">按类别</button>
+    </div>
+
+    <div class="groups-container" id="groupsContainer">
+      <div class="loading">加载中...</div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="createGroupsBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+        </svg>
+        一键应用为标签组
+      </button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <h3 class="modal-title" id="modalTitle">确认操作</h3>
+      <p class="modal-content" id="modalContent"></p>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" id="modalCancel">取消</button>
+        <button class="btn btn-danger" id="modalConfirm">确认</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

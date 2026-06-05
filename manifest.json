@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "ChromeTabManager",
+  "version": "1.0.0",
+  "description": "智能标签管理工具：读取所有标签、按域名/类别分组、识别陈旧与重复、一键创建 Chrome 标签组",
+  "permissions": ["tabs", "tabGroups"],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "chrome_url_overrides": {
+    "newtab": "newtab/newtab.html"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "popup/popup.css",
+        "popup/popup.js"
+      ],
+      "matches": ["chrome-extension://*/*"]
+    }
+  ]
+}
